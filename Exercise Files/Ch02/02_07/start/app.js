@@ -3,9 +3,9 @@
 
   function SizeSelector(props) {
     function sizeOptions() {
-      var sizes = window.Inventory.allSizes;
+      
 
-      return sizes.map(function(num) {
+      return props.sizes.map(function(num) {
         return (
           <option value={num} key={num}>
             {num}
@@ -29,19 +29,34 @@
       <img src={`../../../assets/${props.color}.jpg`} alt="Product Image" />
     );
   }
-
-  function ProductCustomizer(props) {
-    return (
+  
+  var ProductCustomizer =  createReactClass({
+    getInitialState: function(){
+      var sizes = window.Inventory.allSizes;
+      
+      return{
+        color:"red",
+        size:8,
+        sizes:sizes
+        
+      }
+    },
+    render:function(){
+         return (
       <div className="customizer">
         <div className="product-image">
-          <ProductImage color="red" />
+          <ProductImage color={this.state.color} />
         </div>
         <div className="selectors">
-          <SizeSelector size={8} />
+          <SizeSelector size={this.state.size} sizes={this.state.sizes}/>
         </div>
       </div>
-    );
-  }
+      );
+    }
+    
+  });
+
+ 
 
   ReactDOM.render(<ProductCustomizer />, document.getElementById("react-root"));
 })();
