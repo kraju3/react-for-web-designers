@@ -15,7 +15,6 @@
     function onSizeChange(evt) {
       props.handleSizeChange(evt.target.value);
     }
-    
 
     return (
       <div className="field-group">
@@ -41,7 +40,7 @@
         );
       });
     }
-    
+
     function onColorChange(evt) {
       props.handleColorChange(evt.target.value);
     }
@@ -84,28 +83,24 @@
 
       this.setState({
         colors: availableColors,
-        size:selectedSize
+        size: selectedSize
       });
-    
-    
-    if (availableColors.indexOf(this.state.color) === -1){
-      
-      this.setState({color:availableColors[0]});
-    }
-  },
-  
-    
-     handleColorChange: function(selectedColor) {
-      var availableColors = window.Inventory.byColor[selectedColor];
-      
+
+      if (availableColors.indexOf(this.state.color) === -1) {
+        this.setState({ color: availableColors[0] });
+      }
+    },
+
+    handleColorChange: function(selectedColor) {
+      var availableSizes = window.Inventory.byColor[selectedColor];
+
       this.setState({
         sizes: availableSizes,
         color: selectedColor
       });
-      
-      if(availableColors.indexOf(this.state.size)==-1){
-        
-        this.setState({size:availableSizes[0]});
+
+      if (availableSizes.indexOf(this.state.size) === -1) {
+        this.setState({ size: availableSizes[0] });
       }
     },
 
